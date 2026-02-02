@@ -7,7 +7,10 @@ export async function POST(req) {
         const body = await req.json();
         const { email, password, name, mobile, age, gender, profession, location } = body;
 
+        console.log(`[Register] Attempting to register: ${email}`);
+
         if (!email || !password || !name) {
+            console.log('[Register] Missing fields');
             return NextResponse.json({ message: 'Missing required fields' }, { status: 400 });
         }
 
@@ -17,6 +20,7 @@ export async function POST(req) {
         });
 
         if (existingUser) {
+            console.log('[Register] User exists');
             return NextResponse.json({ message: 'User already exists' }, { status: 409 });
         }
 
@@ -27,6 +31,7 @@ export async function POST(req) {
         const colors = ['#f87171', '#60a5fa', '#a78bfa', '#34d399', '#f472b6', '#fbbf24'];
         const randomColor = colors[Math.floor(Math.random() * colors.length)];
 
+        console.log('[Register] Creating User document...');
         // Create user (Standard MongoDB Standalone compatible)
         const user = await prisma.user.create({
             data: {
@@ -35,7 +40,9 @@ export async function POST(req) {
                 password: hashedPassword,
             }
         });
+        console.log(`[Register] User created. ID: ${user.id}`);
 
+        console.log('[Register] Creating Profile document...');
         // Create profile linked to user
         await prisma.profile.create({
             data: {
@@ -48,6 +55,7 @@ export async function POST(req) {
                 avatarColor: randomColor
             }
         });
+        console.log('[Register] Profile created.');
 
         return NextResponse.json({ message: 'User created successfully', userId: user.id }, { status: 201 });
 
