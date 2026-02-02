@@ -27,22 +27,25 @@ export async function POST(req) {
         const colors = ['#f87171', '#60a5fa', '#a78bfa', '#34d399', '#f472b6', '#fbbf24'];
         const randomColor = colors[Math.floor(Math.random() * colors.length)];
 
-        // Create user and profile transaction
+        // Create user (Standard MongoDB Standalone compatible)
         const user = await prisma.user.create({
             data: {
                 name,
                 email,
                 password: hashedPassword,
-                profile: {
-                    create: {
-                        mobile,
-                        age: parseInt(age) || null,
-                        gender,
-                        profession,
-                        location,
-                        avatarColor: randomColor
-                    }
-                }
+            }
+        });
+
+        // Create profile linked to user
+        await prisma.profile.create({
+            data: {
+                userId: user.id,
+                mobile,
+                age: parseInt(age) || null,
+                gender,
+                profession,
+                location,
+                avatarColor: randomColor
             }
         });
 
