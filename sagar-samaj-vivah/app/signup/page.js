@@ -1,8 +1,6 @@
+"use client";
 import AuthForm from '@/components/AuthForm';
 
-export const metadata = {
-    title: 'Join Now - Sagar Samaj Vivah',
-};
 
 export default function SignupPage() {
     return (

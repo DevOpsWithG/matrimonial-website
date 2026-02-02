@@ -1,74 +1,75 @@
+"use client";
 import Link from 'next/link';
 import { Check, Star } from 'lucide-react';
 
 export const metadata = {
-    title: 'Upgrade to Premium - Sagar Samaj Vivah',
+  title: 'Upgrade to Premium - Sagar Samaj Vivah',
 };
 
 export default function PricingPage() {
-    return (
-        <div className="container pricing-page">
-            <div className="pricing-header">
-                <span className="badge">Premium Plans</span>
-                <h1>Unlock Exclusive Features</h1>
-                <p>Take the next step in finding your life partner with our premium benefits.</p>
-            </div>
+  return (
+    <div className="container pricing-page">
+      <div className="pricing-header">
+        <span className="badge">Premium Plans</span>
+        <h1>Unlock Exclusive Features</h1>
+        <p>Take the next step in finding your life partner with our premium benefits.</p>
+      </div>
 
-            <div className="pricing-grid">
-                {/* Free Plan */}
-                <div className="pricing-card basic">
-                    <div className="card-header">
-                        <h3>Basic</h3>
-                        <div className="price">Free</div>
-                        <p>To get you started</p>
-                    </div>
-                    <ul className="features-list">
-                        <li><Check size={18} /> Create Profile</li>
-                        <li><Check size={18} /> Browse Limited Profiles</li>
-                        <li><Check size={18} /> Send Interest (5/month)</li>
-                        <li className="disabled"><Check size={18} /> Chat with Matches</li>
-                        <li className="disabled"><Check size={18} /> View Contact Numbers</li>
-                    </ul>
-                    <button className="btn btn-outline full-btn">Current Plan</button>
-                </div>
+      <div className="pricing-grid">
+        {/* Free Plan */}
+        <div className="pricing-card basic">
+          <div className="card-header">
+            <h3>Basic</h3>
+            <div className="price">Free</div>
+            <p>To get you started</p>
+          </div>
+          <ul className="features-list">
+            <li><Check size={18} /> Create Profile</li>
+            <li><Check size={18} /> Browse Limited Profiles</li>
+            <li><Check size={18} /> Send Interest (5/month)</li>
+            <li className="disabled"><Check size={18} /> Chat with Matches</li>
+            <li className="disabled"><Check size={18} /> View Contact Numbers</li>
+          </ul>
+          <button className="btn btn-outline full-btn">Current Plan</button>
+        </div>
 
-                {/* Gold Plan */}
-                <div className="pricing-card popular">
-                    <div className="popular-tag">Most Popular</div>
-                    <div className="card-header">
-                        <h3>Gold Membership</h3>
-                        <div className="price">₹2,999<span className="period">/3 mos</span></div>
-                        <p>Serious about marriage</p>
-                    </div>
-                    <ul className="features-list">
-                        <li><Check size={18} /> Everything in Basic</li>
-                        <li><Check size={18} /> Unlimited Profile Viewing</li>
-                        <li><Check size={18} /> Send Unlimited Interests</li>
-                        <li><Check size={18} /> Chat with Matches</li>
-                        <li><Check size={18} /> 25 Verified Contacts</li>
-                    </ul>
-                    <button className="btn btn-primary full-btn">Upgrade Now</button>
-                </div>
+        {/* Gold Plan */}
+        <div className="pricing-card popular">
+          <div className="popular-tag">Most Popular</div>
+          <div className="card-header">
+            <h3>Gold Membership</h3>
+            <div className="price">₹2,999<span className="period">/3 mos</span></div>
+            <p>Serious about marriage</p>
+          </div>
+          <ul className="features-list">
+            <li><Check size={18} /> Everything in Basic</li>
+            <li><Check size={18} /> Unlimited Profile Viewing</li>
+            <li><Check size={18} /> Send Unlimited Interests</li>
+            <li><Check size={18} /> Chat with Matches</li>
+            <li><Check size={18} /> 25 Verified Contacts</li>
+          </ul>
+          <button className="btn btn-primary full-btn">Upgrade Now</button>
+        </div>
 
-                {/* Platinum Plan */}
-                <div className="pricing-card">
-                    <div className="card-header">
-                        <h3>Platinum</h3>
-                        <div className="price">₹5,999<span className="period">/6 mos</span></div>
-                        <p>Maximum visibility & support</p>
-                    </div>
-                    <ul className="features-list">
-                        <li><Check size={18} /> Everything in Gold</li>
-                        <li><Check size={18} /> 50 Verified Contacts</li>
-                        <li><Check size={18} /> Relationship Manager</li>
-                        <li><Check size={18} /> Priority Support</li>
-                        <li><Check size={18} /> Profile Highlighter</li>
-                    </ul>
-                    <button className="btn btn-accent full-btn">Select Platinum</button>
-                </div>
-            </div>
+        {/* Platinum Plan */}
+        <div className="pricing-card">
+          <div className="card-header">
+            <h3>Platinum</h3>
+            <div className="price">₹5,999<span className="period">/6 mos</span></div>
+            <p>Maximum visibility & support</p>
+          </div>
+          <ul className="features-list">
+            <li><Check size={18} /> Everything in Gold</li>
+            <li><Check size={18} /> 50 Verified Contacts</li>
+            <li><Check size={18} /> Relationship Manager</li>
+            <li><Check size={18} /> Priority Support</li>
+            <li><Check size={18} /> Profile Highlighter</li>
+          </ul>
+          <button className="btn btn-accent full-btn">Select Platinum</button>
+        </div>
+      </div>
 
-            <style jsx>{`
+      <style jsx>{`
         .pricing-page {
           padding-top: 4rem;
           padding-bottom: 6rem;
@@ -161,6 +162,6 @@ export default function PricingPage() {
           color: var(--primary);
         }
       `}</style>
-        </div>
-    );
+    </div>
+  );
 }

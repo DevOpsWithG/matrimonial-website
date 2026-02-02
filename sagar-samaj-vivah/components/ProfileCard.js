@@ -1,40 +1,41 @@
+"use client";
 import { Heart, Briefcase, MapPin, CheckCircle } from 'lucide-react';
 
 export default function ProfileCard({ profile }) {
-    return (
-        <div className="profile-card">
-            <div className="card-image">
-                <div className="photo-placeholder" style={{ backgroundColor: profile.color || '#cbd5e1' }}>
-                    <span>{profile.name[0]}</span>
-                </div>
-                {profile.isVerified && (
-                    <div className="verified-badge" title="Verified Profile">
-                        <CheckCircle size={14} fill="var(--accent)" color="white" /> Verified
-                    </div>
-                )}
-            </div>
+  return (
+    <div className="profile-card">
+      <div className="card-image">
+        <div className="photo-placeholder" style={{ backgroundColor: profile.color || '#cbd5e1' }}>
+          <span>{profile.name[0]}</span>
+        </div>
+        {profile.isVerified && (
+          <div className="verified-badge" title="Verified Profile">
+            <CheckCircle size={14} fill="var(--accent)" color="white" /> Verified
+          </div>
+        )}
+      </div>
 
-            <div className="card-content">
-                <div className="card-header">
-                    <h3>{profile.name}, {profile.age}</h3>
-                    <button className="favorite-btn"><Heart size={18} /></button>
-                </div>
+      <div className="card-content">
+        <div className="card-header">
+          <h3>{profile.name}, {profile.age}</h3>
+          <button className="favorite-btn"><Heart size={18} /></button>
+        </div>
 
-                <div className="card-details">
-                    <div className="detail-row">
-                        <Briefcase size={16} className="icon-muted" />
-                        <span>{profile.profession}</span>
-                    </div>
-                    <div className="detail-row">
-                        <MapPin size={16} className="icon-muted" />
-                        <span>{profile.location}</span>
-                    </div>
-                </div>
+        <div className="card-details">
+          <div className="detail-row">
+            <Briefcase size={16} className="icon-muted" />
+            <span>{profile.profession}</span>
+          </div>
+          <div className="detail-row">
+            <MapPin size={16} className="icon-muted" />
+            <span>{profile.location}</span>
+          </div>
+        </div>
 
-                <button className="btn btn-primary full-btn">Send Request</button>
-            </div>
+        <button className="btn btn-primary full-btn">Send Request</button>
+      </div>
 
-            <style jsx>{`
+      <style jsx>{`
         .profile-card {
           background: white;
           border-radius: 1rem;
@@ -120,6 +121,6 @@ export default function ProfileCard({ profile }) {
           font-size: 0.9rem;
         }
       `}</style>
-        </div>
-    );
+    </div>
+  );
 }

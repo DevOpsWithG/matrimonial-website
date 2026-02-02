@@ -1,3 +1,4 @@
+"use client";
 import Link from 'next/link';
 import { Search, Shield, Users, HeartHandshake } from 'lucide-react';
 
