@@ -1,0 +1,51 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+    --background: 0 0% 100%;
+    --foreground: 0 0% 3.9%;
+
+    --primary: 262 83% 58%;
+    /* Vivid Purple */
+    --primary-foreground: 210 40% 98%;
+
+    --secondary: 199 89% 49%;
+    /* Metro Blue */
+    --secondary-foreground: 222.2 47.4% 11.2%;
+
+    --accent: 142 71% 45%;
+    /* Metro Green */
+    --accent-foreground: 210 40% 98%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 222.2 84% 4.9%;
+
+    --radius: 0px;
+    /* Sharp edges for Metro look */
+}
+
+@media (prefers-color-scheme: dark) {
+    :root {
+        --background: 222.2 84% 4.9%;
+        --foreground: 210 40% 98%;
+
+        --primary: 263 70% 50%;
+        --primary-foreground: 210 40% 98%;
+
+        --card: 222.2 84% 4.9%;
+        --card-foreground: 210 40% 98%;
+    }
+}
+
+body {
+    @apply bg-background text-foreground;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.metro-tile {
+    @apply transition-transform duration-200 active:scale-95 hover:scale-[1.02] shadow-sm;
+}
