@@ -6,3 +6,5 @@ pydantic
 pydantic-settings
 requests
 email-validator
+python-jose[cryptography]
+passlib[bcrypt]

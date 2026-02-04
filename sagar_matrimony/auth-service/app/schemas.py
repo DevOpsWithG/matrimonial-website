@@ -6,15 +6,15 @@ class UserCreate(BaseModel):
     phone: Optional[str] = None
     password: str
 
-class UserLogin(BaseModel):
-    username: str  # Can be email or phone
-    password: str
-
     @field_validator('password')
     def validate_password(cls, v):
         if len(v) < 8:
             raise ValueError('Password must be at least 8 characters long')
         return v
+
+class UserLogin(BaseModel):
+    username: str  # Can be email or phone
+    password: str
 
 class Token(BaseModel):
     access_token: str
