@@ -15,7 +15,8 @@ const nextConfig = {
                 destination: 'http://localhost/api/profile/:path*'
             }
         ]
-    }
+    },
+    output: 'standalone',
 };
 
 module.exports = nextConfig;
