@@ -1,0 +1,61 @@
+.container {
+    padding: 2rem 0;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+    padding: 0 1rem;
+}
+
+.filters {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 2rem;
+    padding: 0 1rem;
+}
+
+.profileCard {
+    text-align: center;
+    transition: transform 0.2s;
+}
+
+.profileCard:hover {
+    transform: translateY(-5px);
+}
+
+.avatar {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+}
+
+.detail {
+    color: var(--text-muted);
+    font-size: 0.9rem;
+}
+
+.subcaste {
+    color: var(--primary);
+    font-weight: 600;
+    margin: 0.5rem 0;
+}
+
+.bio {
+    font-style: italic;
+    color: var(--text-muted);
+    font-size: 0.9rem;
+    margin-top: 1rem;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
