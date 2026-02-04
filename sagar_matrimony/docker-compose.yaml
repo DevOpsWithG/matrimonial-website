@@ -28,6 +28,8 @@ services:
   auth-service:
     build: 
       context: ./auth-service
+    ports:
+      - "8001:8000"
     environment:
       DATABASE_URL: postgresql://postgres:password@db:5432/sagar_db
       JWT_SECRET: supersecretkey
@@ -40,6 +42,8 @@ services:
   profile-service:
     build:
       context: ./profile-service
+    ports:
+      - "8002:8000"
     environment:
       DATABASE_URL: postgresql://postgres:password@db:5432/sagar_db
     depends_on:

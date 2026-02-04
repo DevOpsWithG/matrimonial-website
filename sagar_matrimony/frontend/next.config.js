@@ -8,11 +8,11 @@ const nextConfig = {
         return [
             {
                 source: '/api/auth/:path*',
-                destination: 'http://localhost/api/auth/:path*' // Proxy to Nginx Gateway
+                destination: 'http://gateway/api/auth/:path*' // Proxy to Nginx Gateway service
             },
             {
                 source: '/api/profile/:path*',
-                destination: 'http://localhost/api/profile/:path*'
+                destination: 'http://gateway/api/profile/:path*'
             }
         ]
     },
