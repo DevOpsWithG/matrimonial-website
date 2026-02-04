@@ -21,23 +21,27 @@ const api = {
         };
 
         try {
-            const response = await fetch(`${API_BASE}${endpoint}`, config);
+            const url = `${API_BASE}${endpoint}`;
+            const response = await fetch(url, config);
 
             if (!response.ok) {
-                // Handle 401 Unauthorized by logging out (optional)
-                if (response.status === 401) {
-                    Cookies.remove('token');
-                    if (typeof window !== 'undefined') {
-                        // window.location.href = '/auth/login'; // Optional: Redirect
-                    }
+                let errorMsg = 'API request failed';
+                try {
+                    const errorData = await response.json();
+                    errorMsg = errorData.detail || errorMsg;
+                } catch (e) {
+                    const text = await response.text();
+                    errorMsg = text || `Error ${response.status}: ${response.statusText}`;
                 }
-                const errorData = await response.json();
-                throw new Error(errorData.detail || 'API request failed');
+                throw new Error(errorMsg);
             }
 
             return await response.json();
         } catch (error) {
-            console.error('API Error:', error);
+            console.error('Fetch Error:', error);
+            if (error.name === 'TypeError' && error.message === 'Failed to fetch') {
+                throw new Error('Connection to API failed. Please check if the services are running.');
+            }
             throw error;
         }
     },

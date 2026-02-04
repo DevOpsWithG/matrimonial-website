@@ -21,18 +21,25 @@ def create_profile(
     db: Session = Depends(get_db)
 ):
     # Check if profile already exists
-    existing = db.query(models.Profile).filter(models.Profile.user_id == current_user_id).first()
-    if existing:
-        raise HTTPException(status_code=400, detail="Profile already exists for this user")
+    try:
+        existing = db.query(models.Profile).filter(models.Profile.user_id == current_user_id).first()
+        if existing:
+            raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail="Profile already exists for this user")
 
-    new_profile = models.Profile(
-        user_id=current_user_id,
-        **profile.model_dump()
-    )
-    db.add(new_profile)
-    db.commit()
-    db.refresh(new_profile)
-    return new_profile
+        new_profile = models.Profile(
+            user_id=current_user_id,
+            **profile.model_dump()
+        )
+        db.add(new_profile)
+        db.commit()
+        db.refresh(new_profile)
+        return new_profile
+    except Exception as e:
+        db.rollback()
+        print(f"Error creating profile: {str(e)}")
+        if isinstance(e, HTTPException):
+            raise e
+        raise HTTPException(status_code=status.HTTP_500_INTERNAL_SERVER_ERROR, detail=f"Database error: {str(e)}")
 
 @app.get("/me", response_model=schemas.ProfileResponse)
 def get_my_profile(

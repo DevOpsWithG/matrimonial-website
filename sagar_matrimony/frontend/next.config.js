@@ -7,12 +7,14 @@ const nextConfig = {
     async rewrites() {
         return [
             {
+                // Internal proxy directly to Auth Service
                 source: '/api/auth/:path*',
-                destination: 'http://gateway/api/auth/:path*' // Proxy to Nginx Gateway service
+                destination: 'http://auth-service:8000/:path*'
             },
             {
+                // Internal proxy directly to Profile Service
                 source: '/api/profile/:path*',
-                destination: 'http://gateway/api/profile/:path*'
+                destination: 'http://profile-service:8000/:path*'
             }
         ]
     },

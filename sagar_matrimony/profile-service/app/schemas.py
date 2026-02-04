@@ -26,7 +26,7 @@ class ProfileUpdate(BaseModel):
 
 class ProfileResponse(BaseModel):
     id: int
-    user_id: int
+    user_id: str
     full_name: str
     gender: str
     date_of_birth: date
@@ -34,6 +34,7 @@ class ProfileResponse(BaseModel):
     caste: str
     sub_caste: str
     bio: Optional[str]
+    height: Optional[int]
     marital_status: str
     education: str
     job_title: str
