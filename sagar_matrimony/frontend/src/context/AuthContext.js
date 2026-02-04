@@ -5,7 +5,13 @@ import Cookies from 'js-cookie';
 import { useRouter } from 'next/navigation';
 import api from '../lib/api';
 
-const AuthContext = createContext();
+const AuthContext = createContext({
+    user: null,
+    loading: false,
+    login: async () => { },
+    register: async () => { },
+    logout: () => { }
+});
 
 export function AuthProvider({ children }) {
     const [user, setUser] = useState(null);

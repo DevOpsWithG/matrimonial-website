@@ -1,4 +1,5 @@
 import './globals.css';
+import { AuthProvider } from '../context/AuthContext';
 
 export const metadata = {
     title: 'Sagar Samaj Vivah | Premier Matrimony',
@@ -13,7 +14,11 @@ export default function RootLayout({ children }) {
                 <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
                 <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
             </head>
-            <body>{children}</body>
+            <body>
+                <AuthProvider>
+                    {children}
+                </AuthProvider>
+            </body>
         </html>
     );
 }
