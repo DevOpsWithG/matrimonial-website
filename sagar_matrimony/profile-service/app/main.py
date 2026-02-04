@@ -46,9 +46,9 @@ def get_my_profile(
 
 @app.get("/search", response_model=List[schemas.ProfileResponse])
 def search_profiles(
-    gender: Optional[str] = None,
     current_user_id: Annotated[str, Depends(deps.get_current_user_id)], # Require login to search
-    db: Session = Depends(get_db)
+    db: Session = Depends(get_db),
+    gender: Optional[str] = None
 ):
     query = db.query(models.Profile).filter(models.Profile.is_approved == True)
     query = query.filter(models.Profile.user_id != current_user_id) # Exclude self

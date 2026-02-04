@@ -15,6 +15,10 @@ export default function RegisterPage() {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+        if (password.length < 8) {
+            setError("Password must be at least 8 characters long.");
+            return;
+        }
         setError('');
         setLoading(true);
         try {
@@ -61,6 +65,11 @@ export default function RegisterPage() {
                             onChange={(e) => setPassword(e.target.value)}
                             required
                         />
+                        {password.length > 0 && password.length < 8 && (
+                            <small style={{ color: '#EF4444', display: 'block', marginTop: '0.25rem' }}>
+                                Must be at least 8 characters long.
+                            </small>
+                        )}
                     </div>
 
                     <button type="submit" className="btn" style={{ width: '100%' }} disabled={loading}>
