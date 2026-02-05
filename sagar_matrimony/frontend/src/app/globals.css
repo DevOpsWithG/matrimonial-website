@@ -1,22 +1,31 @@
 :root {
-    /* Premium Palette */
-    --primary: #D4AF37;
-    /* Gold */
-    --primary-dark: #AA8C2C;
-    --secondary: #800020;
-    /* Burgundy/Maroon for cultural touch */
-    --bg: #0F172A;
-    /* Slate 900 */
-    --bg-card: #1E293B;
-    /* Slate 800 */
-    --text: #F8FAFC;
-    --text-muted: #94A3B8;
-    --success: #10B981;
-    --error: #EF4444;
+    /* New Premium Palette from Screenshots */
+    --primary: #F59E0B;
+    /* Vibrant Orange */
+    --primary-hover: #D97706;
+    --navy-950: #0B0F19;
+    /* Deep Navy Background */
+    --navy-900: #111827;
+    --navy-800: #1F2937;
+    --slate-100: #F1F5F9;
+    --slate-200: #E2E8F0;
+    --slate-300: #CBD5E1;
+    --slate-400: #94A3B8;
+    --slate-600: #475569;
+    --white: #FFFFFF;
 
+    --bg-dark: var(--navy-950);
+    --bg-light: var(--white);
+    --text-on-dark: var(--white);
+    --text-on-light: #1E293B;
+    --text-muted: var(--slate-400);
+
+    /* Fonts kept as requested */
     --font-heading: 'Cinzel', serif;
-    /* Elegant serif */
     --font-body: 'Inter', sans-serif;
+
+    --transition: all 0.3s ease;
+    --shadow-lg: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
 }
 
 * {
@@ -26,10 +35,11 @@
 }
 
 body {
-    background-color: var(--bg);
-    color: var(--text);
+    background-color: var(--bg-light);
+    color: var(--text-on-light);
     font-family: var(--font-body);
-    line-height: 1.6;
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
 }
 
 h1,
@@ -39,83 +49,98 @@ h4,
 h5,
 h6 {
     font-family: var(--font-heading);
-    color: var(--primary);
-    margin-bottom: 1rem;
+    font-weight: 700;
 }
 
 a {
-    color: var(--primary);
+    transition: var(--transition);
     text-decoration: none;
-    transition: color 0.2s;
-}
-
-a:hover {
-    color: var(--primary-dark);
-}
-
-.btn {
-    display: inline-block;
-    padding: 0.75rem 1.5rem;
-    background-color: var(--primary);
-    color: #000;
-    font-weight: 600;
-    border-radius: 0.5rem;
-    border: none;
-    cursor: pointer;
-    transition: transform 0.1s, background-color 0.2s;
-}
-
-.btn:hover {
-    background-color: var(--primary-dark);
-}
-
-.btn-secondary {
-    background-color: transparent;
-    border: 1px solid var(--primary);
-    color: var(--primary);
-}
-
-.btn-secondary:hover {
-    background-color: rgba(212, 175, 55, 0.1);
+    color: inherit;
 }
 
 .container {
     max-width: 1200px;
     margin: 0 auto;
-    padding: 0 1rem;
+    padding: 0 1.5rem;
 }
 
-.card {
-    background-color: var(--bg-card);
-    padding: 2rem;
-    border-radius: 1rem;
-    border: 1px solid rgba(255, 255, 255, 0.05);
-    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.75rem 1.75rem;
+    font-weight: 600;
+    border-radius: 9999px;
+    /* Pill shape from screenshots */
+    cursor: pointer;
+    transition: var(--transition);
+    border: none;
+    font-family: var(--font-body);
+    font-size: 0.95rem;
 }
 
-.input-group {
-    margin-bottom: 1rem;
+.btn-primary {
+    background-color: var(--primary);
+    color: var(--white);
 }
 
-.input-group label {
+.btn-primary:hover {
+    background-color: var(--primary-hover);
+    transform: translateY(-1px);
+}
+
+.btn-outline {
+    background-color: transparent;
+    border: 2px solid var(--primary);
+    color: var(--primary);
+}
+
+.btn-outline:hover {
+    background-color: var(--primary);
+    color: var(--white);
+}
+
+.btn-text {
+    background: none;
+    color: var(--white);
+    padding: 0.5rem 1rem;
+}
+
+.btn-text:hover {
+    opacity: 0.8;
+}
+
+/* Section Spacing */
+section {
+    padding: 5rem 0;
+}
+
+/* Form Styles */
+.form-group {
+    margin-bottom: 1.25rem;
+}
+
+.form-group label {
     display: block;
+    font-size: 0.875rem;
+    font-weight: 500;
     margin-bottom: 0.5rem;
-    color: var(--text-muted);
+    color: var(--slate-600);
 }
 
-.input-group input,
-.input-group textarea,
-.input-group select {
+.form-control {
     width: 100%;
-    padding: 0.75rem;
-    background-color: rgba(0, 0, 0, 0.2);
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 0.75rem 1rem;
+    border: 1px solid var(--slate-200);
     border-radius: 0.5rem;
-    color: var(--text);
     font-family: inherit;
+    font-size: 1rem;
+    color: var(--navy-900);
+    background-color: var(--white);
 }
 
-.input-group input:focus {
+.form-control:focus {
     outline: none;
     border-color: var(--primary);
+    box-shadow: 0 0 0 3px rgba(245, 158, 11, 0.1);
 }
