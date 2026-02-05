@@ -53,17 +53,67 @@ def get_my_profile(
 
 @app.get("/search", response_model=List[schemas.ProfileResponse])
 def search_profiles(
-    current_user_id: Annotated[str, Depends(deps.get_current_user_id)], # Require login to search
+    current_user_id: Annotated[str, Depends(deps.get_current_user_id)],
     db: Session = Depends(get_db),
-    gender: Optional[str] = None
+    gender: Optional[str] = None,
+    min_age: Optional[int] = None,
+    max_age: Optional[int] = None,
+    min_height: Optional[int] = None,
+    max_height: Optional[int] = None,
+    education: Optional[str] = None,
+    job_title: Optional[str] = None,
+    city: Optional[str] = None,
+    marital_status: Optional[str] = None,
+    gotra: Optional[str] = None,
+    sort_by: Optional[str] = "recently_joined"
 ):
     query = db.query(models.Profile).filter(models.Profile.is_approved == True)
     query = query.filter(models.Profile.user_id != current_user_id) # Exclude self
     
     if gender:
         query = query.filter(models.Profile.gender == gender)
+    
+    if marital_status:
+        query = query.filter(models.Profile.marital_status == marital_status)
+
+    if education:
+        query = query.filter(models.Profile.education.ilike(f"%{education}%"))
+        
+    if job_title:
+        query = query.filter(models.Profile.job_title.ilike(f"%{job_title}%"))
+        
+    if city:
+        query = query.filter(models.Profile.city.ilike(f"%{city}%"))
+        
+    if gotra:
+        query = query.filter(models.Profile.gotra.ilike(f"%{gotra}%"))
+
+    if min_height:
+        query = query.filter(models.Profile.height >= min_height)
+    if max_height:
+        query = query.filter(models.Profile.height <= max_height)
+
+    # Age filtering (calculated from date_of_birth)
+    if min_age or max_age:
+        today = date.today()
+        if min_age:
+            # Born on or before (today - min_age years)
+            max_birth_date = date(today.year - min_age, today.month, academics_is_wrong_but_lets_use_simple_math(today.day))
+            query = query.filter(models.Profile.date_of_birth <= max_birth_date)
+        if max_age:
+            # Born on or after (today - max_age years)
+            min_birth_date = date(today.year - max_age - 1, today.month, academics_is_wrong_but_lets_use_simple_math(today.day))
+            query = query.filter(models.Profile.date_of_birth >= min_birth_date)
+
+    if sort_by == "recently_joined":
+        query = query.order_by(models.Profile.created_at.desc())
         
     return query.all()
+
+def academics_is_wrong_but_lets_use_simple_math(day):
+    # Handle Feb 29 for non-leap years if necessary, but being simple for now
+    return day if day <= 28 else 28
+
 
 @app.get("/pending", response_model=List[schemas.ProfileResponse])
 def get_pending_profiles(

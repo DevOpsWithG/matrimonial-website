@@ -11,10 +11,13 @@ class Profile(Base):
     gender = Column(String)
     date_of_birth = Column(Date)
     
-    # Religion/Caste Details
+    # Community Details
     religion = Column(String, default="Hindu")
     caste = Column(String, default="OBC")
     sub_caste = Column(String) # Gawandi or Sagar Samaj
+    native_place = Column(String, nullable=True)
+    gotra = Column(String, nullable=True)
+    family_details = Column(Text, nullable=True)
     
     # Personal Details
     bio = Column(Text)
@@ -25,12 +28,16 @@ class Profile(Base):
     education = Column(String)
     job_title = Column(String)
     company = Column(String, nullable=True)
-    annual_income = Column(String, nullable=True)
+    income_range = Column(String, nullable=True)
     
     # Location
     city = Column(String)
     state = Column(String)
     country = Column(String, default="India")
+    
+    # Preferences & Others
+    horoscope = Column(String, nullable=True)
+    partner_preference = Column(Text, nullable=True)
     
     # Media
     photos = Column(JSON, default=[]) # List of image URLs
@@ -40,3 +47,4 @@ class Profile(Base):
     
     created_at = Column(DateTime(timezone=True), server_default=func.now())
     updated_at = Column(DateTime(timezone=True), onupdate=func.now())
+
