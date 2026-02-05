@@ -27,13 +27,13 @@ export default function LoginPage() {
 
     return (
         <main style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column', backgroundColor: '#0B0F19' }}>
-            <div style={{ padding: '2rem 1rem 1rem', textAlign: 'center' }}>
-                <Link href="/" style={{ fontSize: '1.5rem', fontWeight: 700, color: 'white', textDecoration: 'none' }}>
+            <div style={{ padding: '1.5rem 2rem', textAlign: 'left' }}>
+                <Link href="/" style={{ fontSize: '1.25rem', fontWeight: 700, color: 'white', textDecoration: 'none' }}>
                     Sagar <span style={{ color: '#F59E0B' }}>Samaj</span> Vivah
                 </Link>
             </div>
 
-            <div className={styles.container} style={{ flex: 1, paddingTop: '0' }}>
+            <div className={styles.container} style={{ flex: 1, paddingTop: '0', display: 'flex', alignItems: 'center', justifyContent: 'center', paddingBottom: '2rem' }}>
                 <div className={styles.card}>
                     <h2 className={styles.title}>Welcome Back</h2>
                     <p className={styles.subtitle}>Log in to continue your search</p>

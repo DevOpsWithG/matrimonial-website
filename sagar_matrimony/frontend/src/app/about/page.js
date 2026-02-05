@@ -3,9 +3,9 @@ import styles from '../page.module.css';
 
 export default function AboutPage() {
     return (
-        <main className={styles.main} style={{ backgroundColor: 'var(--navy-950)' }}>
-            <div style={{ padding: '2rem 1rem 1rem', textAlign: 'center' }}>
-                <Link href="/" style={{ fontSize: '1.5rem', fontWeight: 700, color: 'white', textDecoration: 'none' }}>
+        <main className={styles.main} style={{ backgroundColor: 'var(--navy-950)', minHeight: '100vh', display: 'flex', flexDirection: 'column' }}>
+            <div style={{ padding: '1.5rem 2rem', textAlign: 'left' }}>
+                <Link href="/" style={{ fontSize: '1.25rem', fontWeight: 700, color: 'white', textDecoration: 'none' }}>
                     Sagar <span style={{ color: '#F59E0B' }}>Samaj</span> Vivah
                 </Link>
             </div>

@@ -37,55 +37,73 @@ export default function DashboardPage() {
     if (!profile) {
         // User has no profile
         return (
-            <div className={styles.container}>
-                <div className="card">
-                    <h2>Complete Your Profile</h2>
-                    <p>You need to create a profile to start searching for matches.</p>
-                    <div style={{ marginTop: '1.5rem' }}>
-                        <Link href="/dashboard/create-profile" className="btn">Create Profile</Link>
+            <main style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column', backgroundColor: '#0B0F19' }}>
+                <div style={{ padding: '1.5rem 2rem', textAlign: 'left' }}>
+                    <Link href="/" style={{ fontSize: '1.25rem', fontWeight: 700, color: 'white', textDecoration: 'none' }}>
+                        Sagar <span style={{ color: '#F59E0B' }}>Samaj</span> Vivah
+                    </Link>
+                </div>
+
+                <div className={styles.container} style={{ flex: 1, paddingTop: '0', paddingBottom: '3rem' }}>
+                    <div className="card" style={{ maxWidth: '800px', margin: '0 auto' }}>
+                        <h2 style={{ textAlign: 'center', marginBottom: '1.5rem' }}>Complete Your Profile</h2>
+                        <p style={{ textAlign: 'center' }}>You need to create a profile to start searching for matches.</p>
+                        <div style={{ marginTop: '1.5rem', textAlign: 'center' }}>
+                            <Link href="/dashboard/create-profile" className="btn">Create Profile</Link>
+                        </div>
                     </div>
                 </div>
-            </div>
+            </main>
         );
     }
 
+    // ... updating the other return statement ...
+
     return (
-        <div className={styles.container}>
-            <header className={styles.header}>
-                <h1>Namaste, {profile.full_name}</h1>
-                <span className={`${styles.status} ${profile.is_approved ? styles.approved : styles.pending}`}>
-                    {profile.is_approved ? 'Approved' : 'Pending Approval'}
-                </span>
-            </header>
+        <main style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column', backgroundColor: '#0B0F19' }}>
+            <div style={{ padding: '1.5rem 2rem', textAlign: 'left' }}>
+                <Link href="/" style={{ fontSize: '1.25rem', fontWeight: 700, color: 'white', textDecoration: 'none' }}>
+                    Sagar <span style={{ color: '#F59E0B' }}>Samaj</span> Vivah
+                </Link>
+            </div>
 
-            <div className={styles.grid}>
-                <div className="card">
-                    <h3>Your Profile</h3>
-                    <p><strong>Caste:</strong> {profile.caste} ({profile.sub_caste})</p>
-                    <p><strong>Location:</strong> {profile.city}, {profile.state}</p>
-                    <p><strong>Job:</strong> {profile.job_title}</p>
-                    <div style={{ marginTop: '1rem' }}>
-                        <Link href="/dashboard/create-profile" className="btn btn-secondary">Edit Profile</Link>
+            <div className={styles.container} style={{ flex: 1, paddingTop: '0', paddingBottom: '3rem' }}>
+                <header className={styles.header} style={{ marginBottom: '2rem', textAlign: 'left' }}>
+                    <h1 style={{ color: 'white', marginBottom: '0.5rem' }}>Namaste, {profile.full_name}</h1>
+                    <span className={`${styles.status} ${profile.is_approved ? styles.approved : styles.pending}`}>
+                        {profile.is_approved ? 'Approved' : 'Pending Approval'}
+                    </span>
+                </header>
+
+                <div className={styles.grid}>
+                    <div className="card">
+                        <h3>Your Profile</h3>
+                        <p><strong>Caste:</strong> {profile.caste} ({profile.sub_caste})</p>
+                        <p><strong>Location:</strong> {profile.city}, {profile.state}</p>
+                        <p><strong>Job:</strong> {profile.job_title}</p>
+                        <div style={{ marginTop: '1rem' }}>
+                            <Link href="/dashboard/create-profile" className="btn btn-secondary">Edit Profile</Link>
+                        </div>
                     </div>
-                </div>
 
-                <div className="card">
-                    <h3>Find Matches</h3>
-                    {profile.is_approved ? (
-                        <p>Search for your perfect partner within the community.</p>
-                    ) : (
-                        <p className={styles.locked}>Your profile is pending approval data. Matches are hidden.</p>
-                    )}
-
-                    <div style={{ marginTop: '1rem' }}>
+                    <div className="card">
+                        <h3>Find Matches</h3>
                         {profile.is_approved ? (
-                            <Link href="/dashboard/search" className="btn">Search Profiles</Link>
+                            <p>Search for your perfect partner within the community.</p>
                         ) : (
-                            <button className="btn" disabled>Search Locked</button>
+                            <p className={styles.locked}>Your profile is pending approval data. Matches are hidden.</p>
                         )}
+
+                        <div style={{ marginTop: '1rem' }}>
+                            {profile.is_approved ? (
+                                <Link href="/dashboard/search" className="btn">Search Profiles</Link>
+                            ) : (
+                                <button className="btn" disabled>Search Locked</button>
+                            )}
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
+        </main>
     );
 }
