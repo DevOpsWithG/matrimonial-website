@@ -59,25 +59,19 @@ export default function Home() {
                                 <div className={styles.searchRow}>
                                     <div className="form-group" style={{ flex: 1 }}>
                                         <label>Age Range</label>
-                                        <select className="form-control">
-                                            <option>20</option>
-                                            <option>21</option>
-                                            <option>22</option>
-                                            <option>23</option>
-                                            <option>24</option>
-                                            <option>25</option>
+                                        <select className="form-control" defaultValue="20">
+                                            {Array.from({ length: 43 }, (_, i) => i + 18).map(age => (
+                                                <option key={age} value={age}>{age}</option>
+                                            ))}
                                         </select>
                                     </div>
                                     <div style={{ marginBottom: '1.75rem', color: '#666' }}>to</div>
                                     <div className="form-group" style={{ flex: 1 }}>
                                         <label>&nbsp;</label>
-                                        <select className="form-control">
-                                            <option>25</option>
-                                            <option>26</option>
-                                            <option>27</option>
-                                            <option>28</option>
-                                            <option>29</option>
-                                            <option>30</option>
+                                        <select className="form-control" defaultValue="25">
+                                            {Array.from({ length: 53 }, (_, i) => i + 18).map(age => (
+                                                <option key={age} value={age}>{age === 70 ? '70+' : age}</option>
+                                            ))}
                                         </select>
                                     </div>
                                 </div>

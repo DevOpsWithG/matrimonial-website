@@ -3,40 +3,57 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 1rem;
-    background: radial-gradient(circle at center, #1e293b 0%, #0f172a 100%);
+    padding: 2rem;
+    background-color: var(--navy-950);
 }
 
 .card {
     width: 100%;
-    max-width: 400px;
+    max-width: 420px;
+    background-color: var(--white);
+    padding: 3rem 2.5rem;
+    border-radius: 2rem;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
 }
 
 .title {
     text-align: center;
-    font-size: 2rem;
-    margin-bottom: 0.5rem;
+    font-size: 2.25rem;
+    margin-bottom: 0.75rem;
+    color: var(--navy-900);
+    font-family: var(--font-heading);
 }
 
 .subtitle {
     text-align: center;
-    color: var(--text-muted);
-    margin-bottom: 2rem;
+    color: var(--slate-600);
+    margin-bottom: 2.5rem;
+    font-size: 1rem;
 }
 
 .error {
     background-color: rgba(239, 68, 68, 0.1);
-    color: var(--error);
+    color: #EF4444;
     padding: 0.75rem;
     border-radius: 0.5rem;
-    margin-bottom: 1rem;
+    margin-bottom: 1.5rem;
     text-align: center;
     font-size: 0.875rem;
+    border: 1px solid rgba(239, 68, 68, 0.2);
 }
 
 .footer {
     text-align: center;
-    margin-top: 1.5rem;
-    color: var(--text-muted);
-    font-size: 0.875rem;
+    margin-top: 2rem;
+    color: var(--slate-600);
+    font-size: 0.95rem;
+}
+
+.footer a {
+    color: var(--primary);
+    font-weight: 600;
+}
+
+.footer a:hover {
+    text-decoration: underline;
 }
