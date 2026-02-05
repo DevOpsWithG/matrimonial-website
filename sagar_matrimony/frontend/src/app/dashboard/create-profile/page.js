@@ -73,7 +73,7 @@ export default function CreateProfilePage() {
     };
 
     return (
-        <main style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column', backgroundColor: 'var(--bg-dark)' }}>
+        <main className="dashboard-page" style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column', backgroundColor: 'var(--bg-dark)' }}>
             <div style={{ padding: '2rem', textAlign: 'left' }}>
                 <Link href="/" style={{ fontSize: '1.5rem', fontWeight: 800, color: 'white', textDecoration: 'none', fontFamily: 'var(--font-heading)' }}>
                     Sagar <span style={{ color: 'var(--primary)' }}>Samaj</span> Vivah

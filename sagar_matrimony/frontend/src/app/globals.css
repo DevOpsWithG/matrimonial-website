@@ -125,7 +125,8 @@ section {
     font-size: 0.9rem;
     font-weight: 600;
     margin-bottom: 0.5rem;
-    color: var(--slate-300);
+    color: var(--slate-600);
+    /* Default for light theme */
     text-transform: uppercase;
     letter-spacing: 0.05em;
 }
@@ -133,19 +134,42 @@ section {
 .form-control {
     width: 100%;
     padding: 0.875rem 1.25rem;
-    border: 1px solid var(--navy-800);
+    border: 1px solid var(--slate-300);
     border-radius: 0.75rem;
     font-family: inherit;
     font-size: 1rem;
+    color: var(--navy-900);
+    /* Default for light theme */
+    background-color: var(--white);
+    transition: var(--transition);
+}
+
+/* Specific styling for dark theme pages (Dashboard) */
+[style*="background-color: var(--bg-dark)"] .form-control,
+[style*="backgroundColor: var(--bg-dark)"] .form-control,
+[style*="background: var(--bg-dark)"] .form-control,
+.dashboard-page .form-control {
     color: var(--white);
     background-color: rgba(255, 255, 255, 0.05);
-    transition: var(--transition);
+    border-color: var(--navy-800);
+}
+
+[style*="background-color: var(--bg-dark)"] .form-group label,
+[style*="backgroundColor: var(--bg-dark)"] .form-group label,
+[style*="background: var(--bg-dark)"] .form-group label,
+.dashboard-page .form-group label {
+    color: var(--slate-300);
+}
+
+/* Ensure select options are visible */
+.form-control option {
+    background-color: var(--white);
+    color: var(--navy-900);
 }
 
 .form-control:focus {
     outline: none;
     border-color: var(--primary);
-    background-color: rgba(255, 255, 255, 0.08);
     box-shadow: 0 0 0 4px rgba(245, 158, 11, 0.1);
 }
 
@@ -153,6 +177,7 @@ section {
     opacity: 0.5;
     cursor: not-allowed;
 }
+
 
 /* Premium Card Style */
 .card {
@@ -178,24 +203,43 @@ section {
 }
 
 /* Utils */
-.text-center { text-align: center; }
-.mt-1 { margin-top: 1rem; }
-.mt-2 { margin-top: 2rem; }
-.mb-1 { margin-bottom: 1rem; }
-.mb-2 { margin-bottom: 2rem; }
+.text-center {
+    text-align: center;
+}
 
-.text-primary { color: var(--primary); }
-.text-muted { color: var(--slate-400); }
+.mt-1 {
+    margin-top: 1rem;
+}
+
+.mt-2 {
+    margin-top: 2rem;
+}
+
+.mb-1 {
+    margin-bottom: 1rem;
+}
+
+.mb-2 {
+    margin-bottom: 2rem;
+}
+
+.text-primary {
+    color: var(--primary);
+}
+
+.text-muted {
+    color: var(--slate-400);
+}
 
 @media (max-width: 768px) {
     .container {
         padding: 0 1rem;
     }
-    
+
     .card {
         padding: 1.5rem;
     }
-    
+
     section {
         padding: 3rem 0;
     }

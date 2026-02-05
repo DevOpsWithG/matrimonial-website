@@ -50,7 +50,7 @@ export default function SearchPage() {
     };
 
     if (loading) return (
-        <main style={{ minHeight: '100vh', display: 'flex', alignItems: 'center', justifyContent: 'center', backgroundColor: 'var(--bg-dark)' }}>
+        <main className="dashboard-page" style={{ minHeight: '100vh', display: 'flex', alignItems: 'center', justifyContent: 'center', backgroundColor: 'var(--bg-dark)' }}>
             <div className="text-center">
                 <div style={{ fontSize: '1.5rem', color: 'var(--primary)', marginBottom: '1rem' }}>Finding your matches...</div>
                 <div className="text-muted">Searching through the community</div>
@@ -60,7 +60,7 @@ export default function SearchPage() {
 
     if (view === 'filters') {
         return (
-            <main style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column', backgroundColor: 'var(--bg-dark)' }}>
+            <main className="dashboard-page" style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column', backgroundColor: 'var(--bg-dark)' }}>
                 <div style={{ padding: '2rem', textAlign: 'left' }}>
                     <Link href="/dashboard" style={{ fontSize: '1.5rem', fontWeight: 800, color: 'white', textDecoration: 'none', fontFamily: 'var(--font-heading)' }}>
                         Sagar <span style={{ color: 'var(--primary)' }}>Samaj</span> Vivah
@@ -146,7 +146,7 @@ export default function SearchPage() {
     }
 
     return (
-        <main style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column', backgroundColor: 'var(--bg-dark)' }}>
+        <main className="dashboard-page" style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column', backgroundColor: 'var(--bg-dark)' }}>
             <div style={{ padding: '2rem', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
                 <Link href="/dashboard" style={{ fontSize: '1.5rem', fontWeight: 800, color: 'white', textDecoration: 'none', fontFamily: 'var(--font-heading)' }}>
                     Sagar <span style={{ color: 'var(--primary)' }}>Samaj</span> Vivah
