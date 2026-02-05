@@ -3,32 +3,12 @@ import styles from '../page.module.css';
 
 export default function BrowsePage() {
     return (
-        <main className={styles.main}>
-            {/* Header / Navigation */}
-            <header className={styles.header}>
-                <div className="container">
-                    <nav className={styles.nav}>
-                        <div className={styles.logo}>
-                            Sagar <span className={styles.logoSpan}>Samaj</span> Vivah
-                        </div>
-                        <div className={styles.navLinks}>
-                            <Link href="/" className={styles.navLink}>Home</Link>
-                            <Link href="/about" className={styles.navLink}>About Community</Link>
-                            <Link href="/contact" className={styles.navLink}>Contact</Link>
-                            <Link href="/browse" className={styles.navLink}>Browse (Demo)</Link>
-                        </div>
-                        <div className={styles.authLinks}>
-                            <Link href="/auth/login" className={styles.loginLink}>Log In</Link>
-                            <Link href="/auth/register" className={styles.joinBtn}>
-                                <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
-                                    <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" />
-                                </svg>
-                                Join Now
-                            </Link>
-                        </div>
-                    </nav>
-                </div>
-            </header>
+        <main className={styles.main} style={{ backgroundColor: 'var(--navy-950)' }}>
+            <div style={{ padding: '2rem 1rem 1rem', textAlign: 'center' }}>
+                <Link href="/" style={{ fontSize: '1.5rem', fontWeight: 700, color: 'white', textDecoration: 'none' }}>
+                    Sagar <span style={{ color: '#F59E0B' }}>Samaj</span> Vivah
+                </Link>
+            </div>
 
             {/* Content Section */}
             <section className={styles.hero} style={{ minHeight: '60vh' }}>

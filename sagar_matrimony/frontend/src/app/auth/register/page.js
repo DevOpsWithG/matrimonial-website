@@ -33,33 +33,14 @@ export default function RegisterPage() {
     };
 
     return (
-        <main style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column' }}>
-            {/* Header / Navigation */}
-            <header style={{ position: 'fixed', top: 0, left: 0, right: 0, zIndex: 1000, background: 'rgba(255, 255, 255, 0.9)', backdropFilter: 'blur(10px)', borderBottom: '1px solid rgba(0, 0, 0, 0.05)', padding: '0.75rem 0' }}>
-                <div className="container">
-                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                        <div style={{ fontSize: '1.4rem', fontWeight: 700, color: '#0B0F19' }}>
-                            Sagar <span style={{ color: '#F59E0B' }}>Samaj</span> Vivah
-                        </div>
-                        <div style={{ display: 'flex', alignItems: 'center', gap: '2rem' }}>
-                            <Link href="/" style={{ fontWeight: 500, color: '#475569', fontSize: '0.95rem' }}>Home</Link>
-                            <Link href="/about" style={{ fontWeight: 500, color: '#475569', fontSize: '0.95rem' }}>About Community</Link>
-                            <Link href="/contact" style={{ fontWeight: 500, color: '#475569', fontSize: '0.95rem' }}>Contact</Link>
-                            <Link href="/browse" style={{ fontWeight: 500, color: '#475569', fontSize: '0.95rem' }}>Browse (Demo)</Link>
-                        </div>
-                        <div>
-                            <Link href="/auth/register" style={{ backgroundColor: '#F59E0B', color: 'white', padding: '0.6rem 1.4rem', borderRadius: '9999px', fontWeight: 600, display: 'flex', alignItems: 'center', gap: '0.5rem', fontSize: '0.95rem' }}>
-                                <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
-                                    <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" />
-                                </svg>
-                                Join Now
-                            </Link>
-                        </div>
-                    </div>
-                </div>
-            </header>
+        <main style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column', backgroundColor: '#0B0F19' }}>
+            <div style={{ padding: '2rem 1rem 1rem', textAlign: 'center' }}>
+                <Link href="/" style={{ fontSize: '1.5rem', fontWeight: 700, color: 'white', textDecoration: 'none' }}>
+                    Sagar <span style={{ color: '#F59E0B' }}>Samaj</span> Vivah
+                </Link>
+            </div>
 
-            <div className={styles.container}>
+            <div className={styles.container} style={{ flex: 1, paddingTop: '0' }}>
                 <div className={styles.card}>
                     <h2 className={styles.title}>Join Sagar Samaj</h2>
                     <p className={styles.subtitle}>Begin your journey today</p>
