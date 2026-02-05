@@ -49,35 +49,39 @@ export default function CreateProfilePage() {
     };
 
     return (
-        <main style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column', backgroundColor: '#0B0F19' }}>
-            <div style={{ padding: '1.5rem 2rem', textAlign: 'left' }}>
-                <Link href="/" style={{ fontSize: '1.25rem', fontWeight: 700, color: 'white', textDecoration: 'none' }}>
-                    Sagar <span style={{ color: '#F59E0B' }}>Samaj</span> Vivah
+        <main style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column', backgroundColor: 'var(--bg-dark)' }}>
+            <div style={{ padding: '2rem', textAlign: 'left' }}>
+                <Link href="/" style={{ fontSize: '1.5rem', fontWeight: 800, color: 'white', textDecoration: 'none', fontFamily: 'var(--font-heading)' }}>
+                    Sagar <span style={{ color: 'var(--primary)' }}>Samaj</span> Vivah
                 </Link>
             </div>
 
-            <div className={styles.container} style={{ flex: 1, paddingTop: '0', display: 'flex', alignItems: 'center', justifyContent: 'center', paddingBottom: '3rem' }}>
-                <div className="card" style={{ maxWidth: '800px', width: '100%', padding: '2.5rem' }}>
-                    <h2 style={{ marginBottom: '1.5rem', textAlign: 'center', fontSize: '2rem', fontFamily: 'Cinzel, serif' }}>Create Your Profile</h2>
+            <div className={styles.container} style={{ flex: 1, padding: '0 1.5rem 4rem' }}>
+                <div className="card" style={{ maxWidth: '850px', margin: '0 auto' }}>
+                    <header style={{ textAlign: 'center', marginBottom: '3rem' }}>
+                        <h1 style={{ fontSize: '2.5rem', color: 'white', marginBottom: '0.5rem' }}>Create Your Profile</h1>
+                        <p style={{ color: 'var(--slate-400)' }}>Tell the community about yourself to find the best match.</p>
+                    </header>
+
                     <form onSubmit={handleSubmit} className={styles.form}>
                         {/* Personal Info */}
                         <div className={styles.section}>
                             <h3>Personal Information</h3>
-                            <div className="input-group">
+                            <div className="form-group">
                                 <label>Full Name</label>
-                                <input name="full_name" value={formData.full_name} onChange={handleChange} required />
+                                <input className="form-control" name="full_name" value={formData.full_name} onChange={handleChange} required placeholder="Full name as per records" />
                             </div>
                             <div className={styles.row}>
-                                <div className="input-group">
+                                <div className="form-group">
                                     <label>Gender</label>
-                                    <select name="gender" value={formData.gender} onChange={handleChange}>
+                                    <select className="form-control" name="gender" value={formData.gender} onChange={handleChange}>
                                         <option value="Male">Male</option>
                                         <option value="Female">Female</option>
                                     </select>
                                 </div>
-                                <div className="input-group">
+                                <div className="form-group">
                                     <label>Date of Birth</label>
-                                    <input type="date" name="date_of_birth" value={formData.date_of_birth} onChange={handleChange} required />
+                                    <input className="form-control" type="date" name="date_of_birth" value={formData.date_of_birth} onChange={handleChange} required />
                                 </div>
                             </div>
                         </div>
@@ -86,13 +90,13 @@ export default function CreateProfilePage() {
                         <div className={styles.section}>
                             <h3>Community Details</h3>
                             <div className={styles.row}>
-                                <div className="input-group">
+                                <div className="form-group">
                                     <label>Caste</label>
-                                    <input value="OBC" disabled style={{ opacity: 0.7, cursor: 'not-allowed' }} />
+                                    <input className="form-control" value="OBC" disabled />
                                 </div>
-                                <div className="input-group">
+                                <div className="form-group">
                                     <label>Sub Caste</label>
-                                    <select name="sub_caste" value={formData.sub_caste} onChange={handleChange}>
+                                    <select className="form-control" name="sub_caste" value={formData.sub_caste} onChange={handleChange}>
                                         <option value="Gawandi">Gawandi</option>
                                         <option value="Sagar Samaj">Sagar Samaj</option>
                                     </select>
@@ -104,42 +108,45 @@ export default function CreateProfilePage() {
                         <div className={styles.section}>
                             <h3>Physical & Professional</h3>
                             <div className={styles.row}>
-                                <div className="input-group">
+                                <div className="form-group">
                                     <label>Height (cm)</label>
-                                    <input type="number" name="height" value={formData.height} onChange={handleChange} placeholder="e.g. 175" />
+                                    <input className="form-control" type="number" name="height" value={formData.height} onChange={handleChange} placeholder="e.g. 175" />
                                 </div>
-                                <div className="input-group">
+                                <div className="form-group">
                                     <label>Education</label>
-                                    <input name="education" value={formData.education} onChange={handleChange} required />
+                                    <input className="form-control" name="education" value={formData.education} onChange={handleChange} required placeholder="Highest degree earned" />
                                 </div>
                             </div>
-                            <div className="input-group">
+                            <div className="form-group">
                                 <label>Job Title / Profession</label>
-                                <input name="job_title" value={formData.job_title} onChange={handleChange} required />
+                                <input className="form-control" name="job_title" value={formData.job_title} onChange={handleChange} required placeholder="e.g. Software Engineer, Business Owner" />
                             </div>
                             <div className={styles.row}>
-                                <div className="input-group">
+                                <div className="form-group">
                                     <label>City</label>
-                                    <input name="city" value={formData.city} onChange={handleChange} required />
+                                    <input className="form-control" name="city" value={formData.city} onChange={handleChange} required placeholder="Current city" />
                                 </div>
-                                <div className="input-group">
+                                <div className="form-group">
                                     <label>State</label>
-                                    <input name="state" value={formData.state} onChange={handleChange} required />
+                                    <input className="form-control" name="state" value={formData.state} onChange={handleChange} required placeholder="Current state" />
                                 </div>
                             </div>
                         </div>
 
-                        <div className="input-group">
+                        <div className="form-group">
                             <label>About Me</label>
-                            <textarea name="bio" value={formData.bio} onChange={handleChange} rows="4" placeholder="Tell us about yourself..."></textarea>
+                            <textarea className="form-control" name="bio" value={formData.bio} onChange={handleChange} rows="4" placeholder="Share your values, interests, and what you're looking for..."></textarea>
                         </div>
 
-                        <button type="submit" className="btn" disabled={loading}>
-                            {loading ? 'Saving...' : 'Save Profile'}
-                        </button>
+                        <div style={{ marginTop: '1rem' }}>
+                            <button type="submit" className="btn btn-primary" style={{ width: '100%', padding: '1rem', fontSize: '1.1rem' }} disabled={loading}>
+                                {loading ? 'Saving...' : 'Save Profile & Continue'}
+                            </button>
+                        </div>
                     </form>
                 </div>
             </div>
         </main>
     );
 }
+
