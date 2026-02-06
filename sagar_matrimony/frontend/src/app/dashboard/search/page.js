@@ -1,11 +1,13 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useCallback, Suspense } from 'react';
 import Link from 'next/link';
+import { useSearchParams } from 'next/navigation';
 import api from '../../../lib/api';
 import styles from './search.module.css';
 
-export default function SearchPage() {
+function SearchContent() {
+    const searchParamsUrl = useSearchParams();
     const [profiles, setProfiles] = useState([]);
     const [loading, setLoading] = useState(false);
     const [view, setView] = useState('filters'); // 'filters' or 'results'
@@ -24,18 +26,13 @@ export default function SearchPage() {
         sort_by: 'recently_joined'
     });
 
-    const handleParamChange = (e) => {
-        const { name, value } = e.target;
-        setSearchParams(prev => ({ ...prev, [name]: value }));
-    };
-
-    const fetchProfiles = async () => {
+    const fetchProfiles = useCallback(async (paramsToUse = searchParams) => {
         setLoading(true);
         try {
             const queryParams = new URLSearchParams();
-            Object.keys(searchParams).forEach(key => {
-                if (searchParams[key]) {
-                    queryParams.append(key, searchParams[key]);
+            Object.keys(paramsToUse).forEach(key => {
+                if (paramsToUse[key]) {
+                    queryParams.append(key, paramsToUse[key]);
                 }
             });
             const data = await api.get(`/profile/search?${queryParams.toString()}`);
@@ -47,6 +44,28 @@ export default function SearchPage() {
         } finally {
             setLoading(false);
         }
+    }, [searchParams]);
+
+    useEffect(() => {
+        const gender = searchParamsUrl.get('gender');
+        const minAge = searchParamsUrl.get('min_age');
+        const maxAge = searchParamsUrl.get('max_age');
+
+        if (gender || minAge || maxAge) {
+            const newParams = {
+                ...searchParams,
+                gender: gender || searchParams.gender,
+                min_age: minAge ? parseInt(minAge) : searchParams.min_age,
+                max_age: maxAge ? parseInt(maxAge) : searchParams.max_age
+            };
+            setSearchParams(newParams);
+            fetchProfiles(newParams);
+        }
+    }, [searchParamsUrl]);
+
+    const handleParamChange = (e) => {
+        const { name, value } = e.target;
+        setSearchParams(prev => ({ ...prev, [name]: value }));
     };
 
     if (loading) return (
@@ -198,6 +217,14 @@ export default function SearchPage() {
                 </div>
             </div>
         </main>
+    );
+}
+
+export default function SearchPage() {
+    return (
+        <Suspense fallback={<div className="container" style={{ color: 'white' }}>Loading Search...</div>}>
+            <SearchContent />
+        </Suspense>
     );
 }
 
