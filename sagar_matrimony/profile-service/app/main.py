@@ -3,12 +3,33 @@ from sqlalchemy.orm import Session
 from typing import Annotated, List, Optional
 from . import models, schemas, database, deps
 
+from sqlalchemy import text
+
 models.Base.metadata.create_all(bind=database.engine)
+
+# Self-healing migration for missing columns
+def apply_migrations(db: Session):
+    columns_to_add = [
+        ("native_place", "VARCHAR"),
+        ("gotra", "VARCHAR"),
+        ("rashi", "VARCHAR"),
+        ("family_details", "TEXT"),
+        ("horoscope", "VARCHAR")
+    ]
+    for col_name, col_type in columns_to_add:
+        try:
+            db.execute(text(f"ALTER TABLE profiles ADD COLUMN IF NOT EXISTS {col_name} {col_type}"))
+            db.commit()
+        except Exception as e:
+            print(f"Migration error for {col_name}: {e}")
+            db.rollback()
 
 app = FastAPI(title="Sagar Samaj Profile Service")
 
 def get_db():
     db = database.SessionLocal()
+    # Apply migrations on first DB connection if needed
+    apply_migrations(db)
     try:
         yield db
     finally:
