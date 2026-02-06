@@ -60,6 +60,20 @@ function SearchContent() {
             };
             setSearchParams(newParams);
             fetchProfiles(newParams);
+        } else {
+            // No URL params, try to set default based on user's gender
+            const fetchUserGender = async () => {
+                try {
+                    const userProfile = await api.get('/profile/me');
+                    if (userProfile && userProfile.gender) {
+                        const targetGender = userProfile.gender === 'Male' ? 'Female' : 'Male';
+                        setSearchParams(prev => ({ ...prev, gender: targetGender }));
+                    }
+                } catch (err) {
+                    console.error("Could not fetch user profile for gender default", err);
+                }
+            };
+            fetchUserGender();
         }
     }, [searchParamsUrl]);
 
