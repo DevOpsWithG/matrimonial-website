@@ -1,3 +1,6 @@
+# Copyright (c) 2026 Sagar Samaj Vivah. All rights reserved.
+# Unauthorized copying of this file, via any medium, is strictly prohibited.
+# Proprietary and confidential.
 from fastapi import FastAPI, Depends, HTTPException, status, Query
 from sqlalchemy.orm import Session
 from typing import Annotated, List, Optional

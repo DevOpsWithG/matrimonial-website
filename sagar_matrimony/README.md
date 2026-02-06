@@ -65,9 +65,21 @@ Environment variables are managed in `docker-compose.yaml`:
 - `JWT_SECRET`: Security key for token signing.
 - `JWT_ALGORITHM`: Token encryption algorithm (HS256).
 
-## 🤝 Contributing & Support
+## 🤝 Support
 
 For support within the community or technical queries, please reach out via the official channels.
+
+## 📜 Legal & License
+
+**Copyright © 2026 Sagar Samaj Vivah. All rights reserved.**
+
+This software and its associated design, aesthetics, and source code are the exclusive intellectual property of the owners. 
+
+1. **No Redistribution**: You may not redistribute, sell, or share this code or design without explicit written permission.
+2. **Proprietary Rights**: All rights, including copyright and design rights, are reserved globally.
+3. **Usage Restrictions**: Any unauthorized use or reproduction of the design elements or backend logic style is strictly prohibited.
+
+Unauthorized copying of this file, via any medium, is strictly prohibited. Legal action will be pursued against any party found in violation of these terms.
 
 ---
 © 2026 Sagar Samaj Vivah. Designed for community trust and prosperity.

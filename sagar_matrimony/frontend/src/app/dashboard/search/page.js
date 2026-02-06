@@ -1,3 +1,8 @@
+/**
+ * Copyright (c) 2026 Sagar Samaj Vivah. All rights reserved.
+ * Unauthorized copying of this file, via any medium, is strictly prohibited.
+ * Proprietary and confidential.
+ */
 'use client';
 
 import { useEffect, useState, useCallback, Suspense } from 'react';
