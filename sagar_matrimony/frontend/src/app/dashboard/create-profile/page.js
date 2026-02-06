@@ -74,9 +74,6 @@ export default function CreateProfilePage() {
         try {
             // Clean up photos (remove empty strings)
             const cleanPhotos = formData.photos.filter(p => p.trim() !== '');
-            if (cleanPhotos.length < 3) {
-                throw new Error('Please provide at least 3 photos (links for now).');
-            }
 
             // Serialize family details
             const familyDetailsString = JSON.stringify(formData.family_members);
@@ -323,9 +320,9 @@ export default function CreateProfilePage() {
 
                         {/* Photos */}
                         <div className={styles.section}>
-                            <h3>Photos (3 - 6 images)</h3>
+                            <h3>Photos (Optional)</h3>
                             <p style={{ color: 'var(--slate-400)', fontSize: '0.9rem', marginBottom: '1.5rem' }}>
-                                Please provide image URLs for now. A real upload feature will be added soon.
+                                You can provide photo URLs now or add them later. Photos help you get better matches!
                             </p>
                             <div className={styles.photosGrid} style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem' }}>
                                 {formData.photos.map((photo, index) => (
@@ -336,7 +333,6 @@ export default function CreateProfilePage() {
                                             value={photo}
                                             onChange={(e) => handlePhotoChange(index, e.target.value)}
                                             placeholder={`URL for photo ${index + 1}`}
-                                            required={index < 3}
                                         />
                                     </div>
                                 ))}
