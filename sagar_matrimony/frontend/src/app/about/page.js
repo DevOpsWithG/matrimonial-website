@@ -11,7 +11,7 @@ export default function AboutPage() {
             </div>
 
             {/* Content Section */}
-            <section className={styles.hero} style={{ minHeight: '60vh' }}>
+            <section className={styles.hero} style={{ minHeight: '60vh', flex: '1', display: 'flex', alignItems: 'center' }}>
                 <div className="container">
                     <div style={{ textAlign: 'center', maxWidth: '800px', margin: '0 auto' }}>
                         <h1 className={styles.heroTitle}>About Our Community</h1>

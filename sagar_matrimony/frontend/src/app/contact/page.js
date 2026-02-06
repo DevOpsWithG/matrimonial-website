@@ -11,13 +11,13 @@ export default function ContactPage() {
             </div>
 
             {/* Content Section */}
-            <section className={styles.hero} style={{ minHeight: '60vh' }}>
+            <section className={styles.hero} style={{ minHeight: '60vh', flex: '1', display: 'flex', alignItems: 'center' }}>
                 <div className="container">
                     <div style={{ textAlign: 'center', maxWidth: '800px', margin: '0 auto' }}>
                         <h1 className={styles.heroTitle}>Get in Touch</h1>
                         <p className={styles.heroSubtitle}>
                             Have questions or need assistance? Our support team is here to help you on your journey.
-                            Email us at <strong>support@sagarsamajvivah.com</strong> or call us at <strong>+91 98765 43210</strong>.
+                            Email us at <strong>sagarsamajvivah@gmail.com</strong> or call us at <strong>+91 98765 43210</strong>.
                         </p>
                     </div>
                 </div>
