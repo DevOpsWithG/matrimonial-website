@@ -17,7 +17,7 @@ export default function CreateProfilePage() {
         sub_caste: 'Gawandi',
         native_place: '',
         gotra: '',
-        family_details: '',
+        family_members: [{ name: '', relation: '', details: '' }],
         bio: '',
         marital_status: 'Never Married',
         education: '',
@@ -27,6 +27,7 @@ export default function CreateProfilePage() {
         state: '',
         height: '',
         horoscope: '',
+        rashi: '',
         partner_preference: '',
         photos: ['', '', ''] // Start with 3 slots
     });
@@ -34,6 +35,25 @@ export default function CreateProfilePage() {
     const handleChange = (e) => {
         const { name, value } = e.target;
         setFormData(prev => ({ ...prev, [name]: value }));
+    };
+
+    const handleFamilyChange = (index, e) => {
+        const { name, value } = e.target;
+        const newFamily = [...formData.family_members];
+        newFamily[index] = { ...newFamily[index], [name]: value };
+        setFormData(prev => ({ ...prev, family_members: newFamily }));
+    };
+
+    const addFamilyMember = () => {
+        setFormData(prev => ({
+            ...prev,
+            family_members: [...prev.family_members, { name: '', relation: '', details: '' }]
+        }));
+    };
+
+    const removeFamilyMember = (index) => {
+        const newFamily = formData.family_members.filter((_, i) => i !== index);
+        setFormData(prev => ({ ...prev, family_members: newFamily }));
     };
 
     const handlePhotoChange = (index, value) => {
@@ -58,11 +78,19 @@ export default function CreateProfilePage() {
                 throw new Error('Please provide at least 3 photos (links for now).');
             }
 
+            // Serialize family details
+            const familyDetailsString = JSON.stringify(formData.family_members);
+
             const payload = {
                 ...formData,
                 height: formData.height ? parseInt(formData.height) : null,
-                photos: cleanPhotos
+                photos: cleanPhotos,
+                family_details: familyDetailsString
             };
+
+            // Remove the helper array before sending
+            delete payload.family_members;
+
             await api.post('/profile/', payload);
             router.push('/dashboard');
         } catch (err) {
@@ -151,9 +179,66 @@ export default function CreateProfilePage() {
                                     <input className="form-control" name="gotra" value={formData.gotra} onChange={handleChange} required placeholder="Your Gotra" />
                                 </div>
                             </div>
-                            <div className="form-group">
-                                <label>Family Details</label>
-                                <textarea className="form-control" name="family_details" value={formData.family_details} onChange={handleChange} rows="3" placeholder="Tell us about your parents, siblings, etc."></textarea>
+
+                            <div style={{ marginTop: '1.5rem' }}>
+                                <label style={{ display: 'block', marginBottom: '1rem', color: 'var(--slate-300)', fontWeight: 600 }}>Family Members</label>
+                                {formData.family_members.map((member, index) => (
+                                    <div key={index} className={styles.familyMemberRow}>
+                                        <div className={styles.familyMemberHeader}>
+                                            <h4>Member {index + 1}</h4>
+                                            {formData.family_members.length > 1 && (
+                                                <button type="button" onClick={() => removeFamilyMember(index)} className={styles.removeBtn}>Remove</button>
+                                            )}
+                                        </div>
+                                        <div className="form-group">
+                                            <label>Full Name</label>
+                                            <input
+                                                className="form-control"
+                                                name="name"
+                                                value={member.name}
+                                                onChange={(e) => handleFamilyChange(index, e)}
+                                                placeholder="e.g. Rajesh Kumar"
+                                                required
+                                            />
+                                        </div>
+                                        <div className={styles.row}>
+                                            <div className="form-group">
+                                                <label>Relation</label>
+                                                <select
+                                                    className="form-control"
+                                                    name="relation"
+                                                    value={member.relation}
+                                                    onChange={(e) => handleFamilyChange(index, e)}
+                                                    required
+                                                >
+                                                    <option value="">Select Relation</option>
+                                                    <option value="Father">Father</option>
+                                                    <option value="Mother">Mother</option>
+                                                    <option value="Brother">Brother</option>
+                                                    <option value="Sister">Sister</option>
+                                                    <option value="Uncle">Uncle</option>
+                                                    <option value="Aunt">Aunt</option>
+                                                    <option value="Grandfather">Grandfather</option>
+                                                    <option value="Grandmother">Grandmother</option>
+                                                </select>
+                                            </div>
+                                            <div className="form-group">
+                                                <label>Occupation / Education</label>
+                                                <input
+                                                    className="form-control"
+                                                    name="details"
+                                                    value={member.details}
+                                                    onChange={(e) => handleFamilyChange(index, e)}
+                                                    placeholder="e.g. Retired Engineer"
+                                                    required
+                                                />
+                                            </div>
+                                        </div>
+                                    </div>
+                                ))}
+                                <button type="button" onClick={addFamilyMember} className={styles.addBtn}>
+                                    + Add Family Member
+                                </button>
                             </div>
                         </div>
 
@@ -196,16 +281,42 @@ export default function CreateProfilePage() {
                         {/* Preferences & Bio */}
                         <div className={styles.section}>
                             <h3>Additional Details</h3>
-                            <div className="form-group">
-                                <label>Horoscope Details (Optional)</label>
-                                <input className="form-control" name="horoscope" value={formData.horoscope} onChange={handleChange} placeholder="Manglik status, Rashi, etc." />
+                            <div className={styles.row}>
+                                <div className="form-group">
+                                    <label>Horoscope (Manglik status) *</label>
+                                    <select className="form-control" name="horoscope" value={formData.horoscope} onChange={handleChange} required>
+                                        <option value="">Select Status</option>
+                                        <option value="Non-Manglik">Non-Manglik</option>
+                                        <option value="Manglik">Manglik</option>
+                                        <option value="Anshik Manglik">Anshik Manglik (Partial)</option>
+                                        <option value="Don't Know">Don't Know</option>
+                                    </select>
+                                </div>
+                                <div className="form-group">
+                                    <label>Rashi *</label>
+                                    <select className="form-control" name="rashi" value={formData.rashi} onChange={handleChange} required>
+                                        <option value="">Select Rashi</option>
+                                        <option value="Mesh (Aries)">Mesh (Aries)</option>
+                                        <option value="Vrushabh (Taurus)">Vrushabh (Taurus)</option>
+                                        <option value="Mithun (Gemini)">Mithun (Gemini)</option>
+                                        <option value="Karka (Cancer)">Karka (Cancer)</option>
+                                        <option value="Simha (Leo)">Simha (Leo)</option>
+                                        <option value="Kanya (Virgo)">Kanya (Virgo)</option>
+                                        <option value="Tula (Libra)">Tula (Libra)</option>
+                                        <option value="Vrushchik (Scorpio)">Vrushchik (Scorpio)</option>
+                                        <option value="Dhanu (Sagittarius)">Dhanu (Sagittarius)</option>
+                                        <option value="Makar (Capricorn)">Makar (Capricorn)</option>
+                                        <option value="Kumbha (Aquarius)">Kumbha (Aquarius)</option>
+                                        <option value="Meen (Pisces)">Meen (Pisces)</option>
+                                    </select>
+                                </div>
                             </div>
                             <div className="form-group">
-                                <label>About Me</label>
+                                <label>About Me (Optional)</label>
                                 <textarea className="form-control" name="bio" value={formData.bio} onChange={handleChange} rows="4" placeholder="Share your values, interests, and personality..."></textarea>
                             </div>
                             <div className="form-group">
-                                <label>Partner Preference</label>
+                                <label>Partner Preference (Optional)</label>
                                 <textarea className="form-control" name="partner_preference" value={formData.partner_preference} onChange={handleChange} rows="4" placeholder="Describe the kind of person you are looking for..."></textarea>
                             </div>
                         </div>
@@ -248,5 +359,6 @@ export default function CreateProfilePage() {
         </main>
     );
 }
+
 
 

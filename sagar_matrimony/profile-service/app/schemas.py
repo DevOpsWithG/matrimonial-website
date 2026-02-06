@@ -19,6 +19,7 @@ class ProfileCreate(BaseModel):
     city: str
     state: str
     horoscope: Optional[str] = None
+    rashi: Optional[str] = None
     partner_preference: Optional[str] = None
     photos: List[str] = []
 
@@ -28,6 +29,8 @@ class ProfileUpdate(BaseModel):
     job_title: Optional[str] = None
     city: Optional[str] = None
     photos: Optional[List[str]] = None
+    horoscope: Optional[str] = None
+    rashi: Optional[str] = None
     # Add other fields as needed
 
 class ProfileResponse(BaseModel):
@@ -51,6 +54,7 @@ class ProfileResponse(BaseModel):
     city: str
     state: str
     horoscope: Optional[str]
+    rashi: Optional[str]
     partner_preference: Optional[str]
     is_approved: bool
     photos: List[str]

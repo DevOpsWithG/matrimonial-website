@@ -40,3 +40,59 @@
         gap: 1.5rem;
     }
 }
+
+.familyMemberRow {
+    background: rgba(255, 255, 255, 0.02);
+    padding: 1.5rem;
+    border-radius: 1rem;
+    margin-bottom: 2rem;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.familyMemberHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+}
+
+.familyMemberHeader h4 {
+    color: var(--white);
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin: 0;
+}
+
+.removeBtn {
+    background: rgba(239, 68, 68, 0.1);
+    color: #ef4444;
+    border: none;
+    padding: 0.4rem 0.8rem;
+    border-radius: 0.5rem;
+    font-size: 0.85rem;
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.removeBtn:hover {
+    background: #ef4444;
+    color: white;
+}
+
+.addBtn {
+    width: 100%;
+    padding: 1rem;
+    background: rgba(245, 158, 11, 0.05);
+    color: var(--primary);
+    border: 1px dashed var(--primary);
+    border-radius: 0.75rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: var(--transition);
+    margin-bottom: 2rem;
+}
+
+.addBtn:hover {
+    background: rgba(245, 158, 11, 0.1);
+}

@@ -37,6 +37,7 @@ class Profile(Base):
     
     # Preferences & Others
     horoscope = Column(String, nullable=True)
+    rashi = Column(String, nullable=True)
     partner_preference = Column(Text, nullable=True)
     
     # Media
