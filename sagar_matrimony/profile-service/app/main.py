@@ -1,6 +1,7 @@
 from fastapi import FastAPI, Depends, HTTPException, status, Query
 from sqlalchemy.orm import Session
 from typing import Annotated, List, Optional
+from datetime import date
 from . import models, schemas, database, deps
 
 from sqlalchemy import text
