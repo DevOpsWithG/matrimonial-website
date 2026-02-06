@@ -6,6 +6,48 @@ import { useRouter } from 'next/navigation';
 import { useAuth } from '../context/AuthContext';
 import styles from './page.module.css';
 
+const CustomDropdown = ({ label, options, value, onChange, name }) => {
+    const [isOpen, setIsOpen] = useState(false);
+
+    const handleSelect = (optionValue) => {
+        onChange({ target: { name, value: optionValue } });
+        setIsOpen(false);
+    };
+
+    return (
+        <div className={styles.customSelectWrapper}>
+            {label && <label>{label}</label>}
+            <div
+                className={`${styles.customSelectTrigger} ${isOpen ? styles.dropdownOpen : ''}`}
+                onClick={() => setIsOpen(!isOpen)}
+            >
+                <span>{options.find(opt => opt.value == value)?.label || value}</span>
+                <span className={styles.dropdownArrow}>
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
+                        <polyline points="6 9 12 15 18 9"></polyline>
+                    </svg>
+                </span>
+            </div>
+            {isOpen && (
+                <>
+                    <div className={styles.dropdownOverlay} onClick={() => setIsOpen(false)} style={{ position: 'fixed', top: 0, left: 0, right: 0, bottom: 0, zIndex: 90 }} />
+                    <div className={styles.customOptions}>
+                        {options.map((option) => (
+                            <div
+                                key={option.value}
+                                className={`${styles.customOption} ${value == option.value ? styles.customOptionSelected : ''}`}
+                                onClick={() => handleSelect(option.value)}
+                            >
+                                {option.label}
+                            </div>
+                        ))}
+                    </div>
+                </>
+            )}
+        </div>
+    );
+};
+
 export default function Home() {
     const { user } = useAuth();
     const router = useRouter();
@@ -40,6 +82,11 @@ export default function Home() {
 
         router.push(`/dashboard/search?${queryParams.toString()}`);
     };
+
+    const ageOptions = Array.from({ length: 53 }, (_, i) => i + 18).map(age => ({
+        value: age,
+        label: age === 70 ? '70+' : age.toString()
+    }));
 
     return (
         <main className={styles.main}>
@@ -129,32 +176,23 @@ export default function Home() {
                                     </select>
                                 </div>
                                 <div className={styles.searchRow}>
-                                    <div className="form-group" style={{ flex: 1 }}>
-                                        <label>Age Range</label>
-                                        <select
-                                            className="form-control"
+                                    <div style={{ flex: 1 }}>
+                                        <CustomDropdown
+                                            label="Age Range"
                                             name="minAge"
                                             value={searchParams.minAge}
+                                            options={ageOptions}
                                             onChange={handleParamChange}
-                                        >
-                                            {Array.from({ length: 43 }, (_, i) => i + 18).map(age => (
-                                                <option key={age} value={age}>{age}</option>
-                                            ))}
-                                        </select>
+                                        />
                                     </div>
-                                    <div style={{ marginBottom: '1.75rem', color: '#666' }}>to</div>
-                                    <div className="form-group" style={{ flex: 1 }}>
-                                        <label>&nbsp;</label>
-                                        <select
-                                            className="form-control"
+                                    <div style={{ marginBottom: '1.25rem', color: '#666', fontWeight: 600 }}>to</div>
+                                    <div style={{ flex: 1 }}>
+                                        <CustomDropdown
                                             name="maxAge"
                                             value={searchParams.maxAge}
+                                            options={ageOptions}
                                             onChange={handleParamChange}
-                                        >
-                                            {Array.from({ length: 53 }, (_, i) => i + 18).map(age => (
-                                                <option key={age} value={age}>{age === 70 ? '70+' : age}</option>
-                                            ))}
-                                        </select>
+                                        />
                                     </div>
                                 </div>
                                 <button type="submit" className={styles.searchBtn}>

@@ -421,3 +421,90 @@
 .modalClose:hover {
     color: var(--navy-900);
 }
+
+/* Custom Dropdown */
+.customSelectWrapper {
+    position: relative;
+    width: 100%;
+}
+
+.customSelectTrigger {
+    width: 100%;
+    padding: 0.875rem 1.25rem;
+    border: 1px solid var(--slate-300);
+    border-radius: 0.75rem;
+    font-family: inherit;
+    font-size: 1rem;
+    color: var(--navy-900);
+    background-color: var(--white);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.customSelectTrigger:hover {
+    border-color: var(--primary);
+}
+
+.customOptions {
+    position: absolute;
+    top: calc(100% + 5px);
+    left: 0;
+    right: 0;
+    background: var(--white);
+    border: 1px solid var(--slate-200);
+    border-radius: 1rem;
+    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+    z-index: 100;
+    max-height: 220px;
+    /* Approximately 5 items (44px each) */
+    overflow-y: auto;
+    padding: 0.5rem;
+}
+
+.customOption {
+    padding: 0.75rem 1rem;
+    cursor: pointer;
+    border-radius: 0.5rem;
+    transition: var(--transition);
+    color: var(--navy-900);
+    font-size: 0.95rem;
+}
+
+.customOption:hover {
+    background-color: rgba(245, 158, 11, 0.1);
+    color: var(--primary);
+}
+
+.customOptionSelected {
+    background-color: var(--primary) !important;
+    color: var(--white) !important;
+}
+
+.dropdownArrow {
+    transition: transform 0.3s ease;
+}
+
+.dropdownOpen .dropdownArrow {
+    transform: rotate(180deg);
+}
+
+/* Scrollbar styling for custom dropdown */
+.customOptions::-webkit-scrollbar {
+    width: 6px;
+}
+
+.customOptions::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.customOptions::-webkit-scrollbar-thumb {
+    background: var(--slate-200);
+    border-radius: 10px;
+}
+
+.customOptions::-webkit-scrollbar-thumb:hover {
+    background: var(--slate-300);
+}
