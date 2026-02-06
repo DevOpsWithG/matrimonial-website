@@ -9,15 +9,32 @@ models.Base.metadata.create_all(bind=database.engine)
 
 # Self-healing migration for missing columns
 def apply_migrations(db: Session):
+    # Comprehensive list of columns to ensure exist
     columns_to_add = [
         ("native_place", "VARCHAR"),
         ("gotra", "VARCHAR"),
-        ("rashi", "VARCHAR"),
         ("family_details", "TEXT"),
-        ("horoscope", "VARCHAR")
+        ("bio", "TEXT"),
+        ("height", "INTEGER"),
+        ("marital_status", "VARCHAR"),
+        ("education", "VARCHAR"),
+        ("job_title", "VARCHAR"),
+        ("company", "VARCHAR"),
+        ("income_range", "VARCHAR"),
+        ("city", "VARCHAR"),
+        ("state", "VARCHAR"),
+        ("country", "VARCHAR"),
+        ("horoscope", "VARCHAR"),
+        ("rashi", "VARCHAR"),
+        ("partner_preference", "TEXT"),
+        ("photos", "JSON"),
+        ("is_approved", "BOOLEAN DEFAULT FALSE"),
+        ("religion", "VARCHAR DEFAULT 'Hindu'"),
+        ("caste", "VARCHAR DEFAULT 'OBC'")
     ]
     for col_name, col_type in columns_to_add:
         try:
+            # Use text() for raw SQL
             db.execute(text(f"ALTER TABLE profiles ADD COLUMN IF NOT EXISTS {col_name} {col_type}"))
             db.commit()
         except Exception as e:
